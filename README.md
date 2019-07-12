@@ -1,4 +1,4 @@
-# Discord-Webhook-Announcer
+# Discord Webhook Announcer
 A simple program that let's you send messages on Discord through Webhooks.
 
 ## Features
@@ -11,8 +11,8 @@ A simple program that let's you send messages on Discord through Webhooks.
 You can download the program from [here](https://github.com/Kowalski7/Discord-Webhook-Announcer/releases).
 This program does not require any installation. Just place it wherever you want and run it.
 
-## Profile storage
-All of the profiles are stored in a subdirectory named 'profiles'. It will be automatically created in the same folder as the main executable. The profiles will use the extension '.dwh'. Since all data made by the program is stored in the same directory as the program itself, it can also be put on a flash drive and used to make announcements on the go.
+## Profiles storage location
+All of the profiles are stored in a subdirectory named 'profiles'. It will be automatically created in the same folder as the main executable and the profiles will use the extension '.dwh'. Since all data made by the program is stored in the same directory as the program itself, it can also be put on a flash drive and used to make announcements on the go.
 
 ## Credits
 [Literallycj](https://pastebin.com/u/literallycj) - who made a simple Discord Webhook sender in VB.net and whose code is at the core of this program. Without it, this program wouldn't exist. Their code can be found [here](https://pastebin.com/EfAhFHty).
