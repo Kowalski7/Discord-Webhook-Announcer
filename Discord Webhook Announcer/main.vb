@@ -1,9 +1,6 @@
 ﻿Imports System.Collections.Specialized
 Imports System.Net
 Imports System.IO
-Imports System.Drawing.Text
-Imports System.Runtime.InteropServices
-Imports System.Reflection
 Imports System.Web.Script.Serialization
 
 Public Class main
@@ -45,19 +42,11 @@ Public Class main
         circleOverlay.Parent = profilePic
         circleOverlay.BackColor = Color.Transparent
         circleOverlay.Location = New Point(0, 0)
-        Dim pfc As New PrivateFontCollection
-        Dim resource As String = "Discord_Webhook_Announcer.whitney_medium.ttf"
-        Dim fontstream As Stream
-        Dim data As IntPtr
-        Dim fontdata As Byte()
-        fontstream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource)
-        data = Marshal.AllocCoTaskMem(CInt(fontstream.Length))
-        fontdata = New Byte(fontstream.Length - 1) {}
-        fontstream.Read(fontdata, 0, CInt(fontstream.Length))
-        Marshal.Copy(fontdata, 0, data, CInt(fontstream.Length))
-        pfc.AddMemoryFont(data, CInt(fontstream.Length))
-        fontstream.Close()
-        Marshal.FreeCoTaskMem(data)
+        Dim pfc As New Drawing.Text.PrivateFontCollection
+        If Not File.Exists(Path.GetTempPath + "\whitney_font.ttf") Then
+            My.Computer.FileSystem.WriteAllBytes(Path.GetTempPath + "\whitney_font.ttf", My.Resources.whitney, False)
+        End If
+        pfc.AddFontFile(Path.GetTempPath + "\whitney_font.ttf")
         username.Font = New Font(pfc.Families(0), 27.75, FontStyle.Bold)
         Label1.Font = New Font(pfc.Families(0), 12, FontStyle.Regular)
         Label2.Font = New Font(pfc.Families(0), 12, FontStyle.Regular)

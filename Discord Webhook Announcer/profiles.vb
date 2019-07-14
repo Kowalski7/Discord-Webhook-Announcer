@@ -10,7 +10,7 @@ Public Class profiles
         Try
             Dim filedata As String()
             filedata = {main.webhookLink.Text, main.username.Text, main.profilePicLink.Text}
-            System.IO.File.WriteAllLines("profiles\" + profileName + ".dwh", filedata)
+            File.WriteAllLines("profiles\" + profileName + ".dwh", filedata)
         Catch
             MsgBox("Unable to save file!" & vbNewLine & "This may be caused by an illegal character in the name you chose.", vbCritical + vbOKOnly, "Profiles")
         End Try
@@ -45,16 +45,16 @@ Public Class profiles
     End Sub
 
     Sub displayProfiles()
-        If (Not System.IO.Directory.Exists("profiles")) Then
+        If (Not Directory.Exists("profiles")) Then
             Try
-                System.IO.Directory.CreateDirectory("profiles")
+                Directory.CreateDirectory("profiles")
             Catch
                 MsgBox("Unable to create or load the profiles database!" & vbNewLine & "Make sure you are not running this program in a system protected directory (ex: ""Program Files"")" & vbNewLine & "You can try moving the program to another folder or run it as Administrator", vbCritical + vbOKOnly, "Profiles Database Error")
             End Try
         End If
         profilesList.Items.Clear()
-        For Each file As String In IO.Directory.GetFiles("profiles", "*.dwh")
-            profilesList.Items.Add(IO.Path.GetFileNameWithoutExtension(file))
+        For Each file As String In Directory.GetFiles("profiles", "*.dwh")
+            profilesList.Items.Add(Path.GetFileNameWithoutExtension(file))
         Next
     End Sub
     Sub toggleButtons(x As String)
