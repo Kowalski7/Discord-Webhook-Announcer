@@ -130,10 +130,12 @@
     <EmbeddedResource Include="Resources\whitney_medium.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <None Include="Resources\error.jpg" />
     <None Include="Resources\default.jpg" />
     <None Include="Resources\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -74,6 +74,11 @@ Public Class profiles
     End Sub
 
     Private Sub Profiles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Label1.Font = New Font(main.pfc.Families(0), 48, FontStyle.Bold)
+        profilesList.Font = New Font(main.pfc.Families(0), 12, FontStyle.Regular)
+        saveBtn.Font = New Font(main.pfc.Families(0), 14.25, FontStyle.Regular)
+        deleteBtn.Font = New Font(main.pfc.Families(0), 14.25, FontStyle.Regular)
+        useBtn.Font = New Font(main.pfc.Families(0), 14.25, FontStyle.Regular)
         displayProfiles()
     End Sub
 

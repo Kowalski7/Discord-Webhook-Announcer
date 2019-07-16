@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Web.Script.Serialization
 
 Public Class main
+    Public pfc As New Text.PrivateFontCollection
     Private Sub ProfilePicLink_TextChanged(sender As Object, e As EventArgs) Handles profilePicLink.TextChanged
         If profilePicLink.Text = "" Then
             profilePic.Image = My.Resources.default_picture
@@ -12,7 +13,7 @@ Public Class main
         End If
         Try
             Dim tClient As WebClient = New WebClient
-            Dim tImage As Bitmap = Bitmap.FromStream(New MemoryStream(tClient.DownloadData(profilePicLink.Text)))
+            Dim tImage As Bitmap = Image.FromStream(New MemoryStream(tClient.DownloadData(profilePicLink.Text)))
             profilePic.Image = tImage
             profilePic.SizeMode = ImageLayout.Zoom
         Catch
@@ -42,7 +43,6 @@ Public Class main
         circleOverlay.Parent = profilePic
         circleOverlay.BackColor = Color.Transparent
         circleOverlay.Location = New Point(0, 0)
-        Dim pfc As New Drawing.Text.PrivateFontCollection
         If Not File.Exists(Path.GetTempPath + "\whitney_font.ttf") Then
             My.Computer.FileSystem.WriteAllBytes(Path.GetTempPath + "\whitney_font.ttf", My.Resources.whitney, False)
         End If
@@ -55,11 +55,7 @@ Public Class main
         messageField.Font = New Font(pfc.Families(0), 12, FontStyle.Regular)
         profilesBtn.Font = New Font(pfc.Families(0), 14.25, FontStyle.Regular)
         send.Font = New Font(pfc.Families(0), 18, FontStyle.Regular)
-        profiles.Label1.Font = New Font(pfc.Families(0), 48, FontStyle.Bold)
-        profiles.profilesList.Font = New Font(pfc.Families(0), 12, FontStyle.Regular)
-        profiles.saveBtn.Font = New Font(pfc.Families(0), 14.25, FontStyle.Regular)
-        profiles.deleteBtn.Font = New Font(pfc.Families(0), 14.25, FontStyle.Regular)
-        profiles.useBtn.Font = New Font(pfc.Families(0), 14.25, FontStyle.Regular)
+
     End Sub
 
     Private Sub Username_TextChanged(sender As Object, e As EventArgs) Handles username.TextChanged
@@ -82,8 +78,7 @@ Public Class main
 
             response = DirectCast(request.GetResponse(), HttpWebResponse)
             reader = New StreamReader(response.GetResponseStream())
-            Dim rawresp As String
-            rawresp = reader.ReadToEnd()
+            Dim rawresp As String = reader.ReadToEnd()
             Dim jss As New JavaScriptSerializer()
             Dim dict As Dictionary(Of String, String) = jss.Deserialize(Of Dictionary(Of String, String))(rawresp)
 
@@ -106,10 +101,6 @@ Public Class dWebHook
     Public Property WebHook As String
     Public Property UserName As String
     Public Property ProfilePicture As String
-
-    Public Sub New()
-        client = New WebClient()
-    End Sub
 
     Public Sub SendMessage(ByVal msgSend As String)
         If msgSend = "" Or WebHook = "" Then

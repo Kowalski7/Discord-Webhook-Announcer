@@ -22,6 +22,7 @@ Partial Class profiles
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(profiles))
         Me.profilesList = New System.Windows.Forms.ListBox()
         Me.saveBtn = New System.Windows.Forms.Button()
         Me.deleteBtn = New System.Windows.Forms.Button()
@@ -109,10 +110,10 @@ Partial Class profiles
         Me.Controls.Add(Me.saveBtn)
         Me.Controls.Add(Me.profilesList)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "profiles"
-        Me.ShowIcon = False
         Me.Text = "Profiles"
         Me.ResumeLayout(False)
         Me.PerformLayout()
