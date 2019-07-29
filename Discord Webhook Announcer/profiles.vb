@@ -31,11 +31,14 @@ Public Class profiles
         Catch
             MsgBox("Unable to load profile!" & vbNewLine & "It may have been deleted or renamed.", vbCritical + vbOKOnly, "Profiles")
         End Try
-        If main.username.Text = "Webhook" And main.autoFetch.Checked = True Then
-            main.fetchWHinfo(1, 0)
-        End If
-        If main.profilePicLink.Text = "" And main.autoFetch.Checked = True Then
-            main.fetchWHinfo(0, 1)
+        If main.autoFetch.Checked = True Then
+            If main.username.Text = "Webhook" And main.profilePicLink.Text = "" Then
+                main.fetchWHinfo(1, 1)
+            ElseIf main.username.Text = "Webhook" Then
+                main.fetchWHinfo(1, 0)
+            ElseIf main.profilePicLink.Text = "" Then
+                main.fetchWHinfo(0, 1)
+            End If
         End If
     End Sub
     Private Sub profilesList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles profilesList.SelectedIndexChanged

@@ -102,6 +102,10 @@ Public Class dWebHook
     Public Property UserName As String
     Public Property ProfilePicture As String
 
+    Public Sub New()
+        client = New WebClient()
+    End Sub
+
     Public Sub SendMessage(ByVal msgSend As String)
         If msgSend = "" Or WebHook = "" Then
             MsgBox("The webhook link and message are required!", vbCritical + vbOKOnly)
@@ -110,9 +114,11 @@ Public Class dWebHook
         discordValues.Add("username", UserName)
         discordValues.Add("avatar_url", ProfilePicture)
         discordValues.Add("content", msgSend)
-
-        client.UploadValues(WebHook, discordValues)
-
+        Try
+            client.UploadValues(WebHook, discordValues)
+        Catch
+            MsgBox("Unable to send message!" & vbNewLine & vbNewLine & "This issue can be caused by one or more of the following:" & vbNewLine & "- The webhook link is incorrect." & vbNewLine & "- There is no connection to the Internet." & vbNewLine & "- Another program or firewall is blocking this application's access to the Internet." & vbNewLine & "- Discord's servers are down." & vbNewLine & vbNewLine & "If you believe everything is in working order and this problem persists, please submit an issue on this program's Github page.", vbCritical + vbOKOnly, "Discord Webhook Announcer")
+        End Try
         discordValues.Remove("username")
         discordValues.Remove("avatar_url")
         discordValues.Remove("content")
