@@ -1,10 +1,6 @@
 # Discord Webhook Announcer
 A simple program that let's you send messages on Discord through Webhooks.
 
-## IMPORTANT: Webhook Migration
-In June 2020, Discord has migrated their website from "discordapp.com" to "discord.com". At the moment, all requests going to "discordapp.com" are still handled, however this will no longer be the case after November 7, 2020. At that point, all webhooks containing the old domain in their URL will cease to work unless each one of them is edited individually, and with this tool you can migrate all of your saved webhooks to the new domain with just a few clicks.
-The tool can be downloaded from [here](https://raw.githubusercontent.com/Kowalski7/k7-database/master/toolbox/DWH%20Migration%20Utility.exe).
-
 ## Features
 - Customization: Customize the username and profile picture of your webhook.
 - Profiles: Store multiple webhook configurations and switch between them with ease.
